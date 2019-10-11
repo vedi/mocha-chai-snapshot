@@ -76,11 +76,11 @@ module.exports = function (chai, utils) {
         }
         if(isForced){
             writeSnap(snapshotFile, name, actual);
-            expected = actual;
+            expected = JSON.parse(JSON.stringify(actual));
         }
-        
+
         if (actual !== null && typeof actual === "object") {
-            chai.assert.deepEqual(actual, expected);
+            chai.assert.deepEqual(JSON.parse(JSON.stringify(actual)), expected);
         } else {
             chai.assert.equal(actual, expected);
         }
